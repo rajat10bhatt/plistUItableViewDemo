@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04620EE61F08B36F009AD925 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04620EE51F08B36F009AD925 /* Employee.swift */; };
+		04620EE81F08B3D0009AD925 /* PlistAccessMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04620EE71F08B3D0009AD925 /* PlistAccessMethods.swift */; };
 		04BB1ED31F07BB5200ACA094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1ED21F07BB5200ACA094 /* AppDelegate.swift */; };
-		04BB1ED51F07BB5200ACA094 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1ED41F07BB5200ACA094 /* ViewController.swift */; };
+		04BB1ED51F07BB5200ACA094 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1ED41F07BB5200ACA094 /* EmployeeListViewController.swift */; };
 		04BB1ED81F07BB5200ACA094 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BB1ED61F07BB5200ACA094 /* Main.storyboard */; };
 		04BB1EDA1F07BB5200ACA094 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04BB1ED91F07BB5200ACA094 /* Assets.xcassets */; };
 		04BB1EDD1F07BB5200ACA094 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BB1EDB1F07BB5200ACA094 /* LaunchScreen.storyboard */; };
 		04BB1EE81F07BB5200ACA094 /* EmployeeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1EE71F07BB5200ACA094 /* EmployeeListTests.swift */; };
 		04BB1EF31F07BB5200ACA094 /* EmployeeListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1EF21F07BB5200ACA094 /* EmployeeListUITests.swift */; };
+		04BB1F011F07C9DD00ACA094 /* EmployeeFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1F001F07C9DD00ACA094 /* EmployeeFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04620EE51F08B36F009AD925 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		04620EE71F08B3D0009AD925 /* PlistAccessMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistAccessMethods.swift; sourceTree = "<group>"; };
 		04BB1ECF1F07BB5100ACA094 /* EmployeeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BB1ED21F07BB5200ACA094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04BB1ED41F07BB5200ACA094 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		04BB1ED41F07BB5200ACA094 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
 		04BB1ED71F07BB5200ACA094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04BB1ED91F07BB5200ACA094 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04BB1EDC1F07BB5200ACA094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		04BB1EEE1F07BB5200ACA094 /* EmployeeListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BB1EF21F07BB5200ACA094 /* EmployeeListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListUITests.swift; sourceTree = "<group>"; };
 		04BB1EF41F07BB5200ACA094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04BB1F001F07C9DD00ACA094 /* EmployeeFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeFormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				04BB1ED21F07BB5200ACA094 /* AppDelegate.swift */,
-				04BB1ED41F07BB5200ACA094 /* ViewController.swift */,
+				04BB1ED41F07BB5200ACA094 /* EmployeeListViewController.swift */,
+				04BB1F001F07C9DD00ACA094 /* EmployeeFormViewController.swift */,
+				04620EE51F08B36F009AD925 /* Employee.swift */,
+				04620EE71F08B3D0009AD925 /* PlistAccessMethods.swift */,
 				04BB1ED61F07BB5200ACA094 /* Main.storyboard */,
 				04BB1ED91F07BB5200ACA094 /* Assets.xcassets */,
 				04BB1EDB1F07BB5200ACA094 /* LaunchScreen.storyboard */,
@@ -259,8 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04BB1ED51F07BB5200ACA094 /* ViewController.swift in Sources */,
+				04BB1ED51F07BB5200ACA094 /* EmployeeListViewController.swift in Sources */,
+				04620EE61F08B36F009AD925 /* Employee.swift in Sources */,
+				04620EE81F08B3D0009AD925 /* PlistAccessMethods.swift in Sources */,
 				04BB1ED31F07BB5200ACA094 /* AppDelegate.swift in Sources */,
+				04BB1F011F07C9DD00ACA094 /* EmployeeFormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +517,7 @@
 				04BB1EF91F07BB5200ACA094 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04BB1EFA1F07BB5200ACA094 /* Build configuration list for PBXNativeTarget "EmployeeListTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +526,7 @@
 				04BB1EFC1F07BB5200ACA094 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04BB1EFD1F07BB5200ACA094 /* Build configuration list for PBXNativeTarget "EmployeeListUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +535,7 @@
 				04BB1EFF1F07BB5200ACA094 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

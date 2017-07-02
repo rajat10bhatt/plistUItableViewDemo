@@ -33,6 +33,9 @@
                                             <segment title="Favourite"/>
                                         </segments>
                                         <color key="tintColor" red="0.34901960784313724" green="0.18431372549019609" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="kZ2-Gh-tRm"/>
+                                        </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sot-85-XKu">
                                         <rect key="frame" x="8" y="38" width="367" height="565"/>

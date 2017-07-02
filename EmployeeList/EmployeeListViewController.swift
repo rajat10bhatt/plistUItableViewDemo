@@ -8,20 +8,20 @@
 
 import UIKit
 
-class EmployeeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EmployeeListViewController: UIViewController {
     
     @IBOutlet weak var employeeTableView: UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     let plistAccessMethods = PlistAccessMetods()
     var dataForTableView: [String:String] = [:]
+    var favouriteData: [String:String] = [:]
     var favourite :[String:Bool] = [:]
-    var isFirstRun = true
+    var segmentFavouriteSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem?.customView?.backgroundColor = UIColor.orange
         
         var titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         segmentControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
@@ -44,7 +44,47 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            print("All")
+            self.segmentFavouriteSelected = false
+            self.employeeTableView.reloadData()
+        case 1:
+            print("Favourite")
+            self.favouriteData.removeAll()
+            for (key, value) in dataForTableView {
+                if favourite[key]! {
+                    self.favouriteData[key] = value
+                }
+            }
+            self.segmentFavouriteSelected = true
+            self.employeeTableView.reloadData()
+        default:
+            print("default")
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromCell" {
+            let destination = segue.destination as! EmployeeFormViewController
+            if segmentFavouriteSelected {
+                destination.selectedName = Array(favouriteData.keys)[sender as! Int]
+                destination.selectedPhone = Array(favouriteData.values)[sender as! Int]
+            } else {
+                destination.selectedName = Array(dataForTableView.keys)[sender as! Int]
+                destination.selectedPhone = Array(dataForTableView.values)[sender as! Int]
+            }
+            destination.fromCell = true
+        }
+    }
+}
+
+extension EmployeeListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
+        if segmentFavouriteSelected {
+            return favouriteData.count
+        }
         return dataForTableView.count
     }
     
@@ -70,15 +110,25 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! EmployeeTableViewCell
         cell.contentView.layer.shadowColor = UIColor.black.cgColor
         cell.contentView.layer.shadowRadius = 10
-        cell.titleLbl.text = Array(dataForTableView.keys)[indexPath.section]
-        cell.subtitleLbl.text = Array(dataForTableView.values)[indexPath.section]
         cell.favouriteClicked = self as TableViewCellFavouriteButtonClicked
-        cell.favouriteButton.tag = indexPath.section
-        if Array(favourite.values)[indexPath.section] {
+        if segmentFavouriteSelected {
+            cell.titleLbl.text = Array(favouriteData.keys)[indexPath.section]
+            cell.subtitleLbl.text = Array(favouriteData.values)[indexPath.section]
+            cell.favouriteButton.tag = indexPath.section
             cell.favouriteButton.setImage(#imageLiteral(resourceName: "filledStar"), for: .normal)
         } else {
-            cell.favouriteButton.setImage(#imageLiteral(resourceName: "emptyStar"), for: .normal)
+            cell.titleLbl.text = Array(dataForTableView.keys)[indexPath.section]
+            cell.subtitleLbl.text = Array(dataForTableView.values)[indexPath.section]
+            cell.favouriteButton.tag = indexPath.section
+            if Array(favourite.values)[indexPath.section] {
+                cell.favouriteButton.setImage(#imageLiteral(resourceName: "filledStar"), for: .normal)
+            } else {
+                cell.favouriteButton.setImage(#imageLiteral(resourceName: "emptyStar"), for: .normal)
+            }
         }
+        
+        
+        
         return cell
     }
     
@@ -86,21 +136,17 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         print(indexPath.section)
         self.performSegue(withIdentifier: "fromCell", sender: indexPath.section)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "fromCell" {
-            let destination = segue.destination as! EmployeeFormViewController
-            destination.selectedName = Array(dataForTableView.keys)[sender as! Int]
-            destination.selectedPhone = Array(dataForTableView.values)[sender as! Int]
-            destination.fromCell = true
-        }
-    }
 }
 
 extension EmployeeListViewController: TableViewCellFavouriteButtonClicked {
     func onclick(tag: Int, favourite: Bool) {
         let indexPath = IndexPath(row: 0, section: tag)
         let cell = self.employeeTableView.cellForRow(at: indexPath) as! EmployeeTableViewCell
+        if segmentFavouriteSelected {
+            if favourite {
+                self.favouriteData.removeValue(forKey: cell.titleLbl.text!)
+            }
+        }
         self.plistAccessMethods.writeDataOnFavouritePlist(oldFavourite: self.favourite, newfavourite: !favourite, forKey: cell.titleLbl.text!, completion: {
             self.plistAccessMethods.readDataFromPlist(completion: { (_:[String : String], favourite:[String : Bool]) in
                 self.favourite = favourite

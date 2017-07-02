@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftValidator
 
 class EmployeeFormViewController: UIViewController {
 

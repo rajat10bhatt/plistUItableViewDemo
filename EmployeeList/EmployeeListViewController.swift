@@ -27,14 +27,6 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
         segmentControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
         self.automaticallyAdjustsScrollViewInsets = false
-        let plistExist = self.plistAccessMethods.checkPlistExist()
-        if plistExist{
-            self.plistAccessMethods.readDataFromPlist { (allEmployees:[String:String]) in
-                for _ in 1...allEmployees.count {
-                    favourite.append(false)
-                }
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +35,9 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         if plistExist{
             self.plistAccessMethods.readDataFromPlist { (allEmployees:[String:String]) in
                 self.dataForTableView = allEmployees
+                for _ in 1...allEmployees.count {
+                    favourite.append(false)
+                }
                 DispatchQueue.main.async {
                     self.employeeTableView.reloadData()
                 }
@@ -78,6 +73,8 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         cell.contentView.layer.shadowRadius = 10
         cell.titleLbl.text = Array(dataForTableView.keys)[indexPath.section]
         cell.subtitleLbl.text = Array(dataForTableView.values)[indexPath.section]
+        cell.favouriteClicked = self as TableViewCellFavouriteButtonClicked
+        cell.favouriteButton.tag = indexPath.section
         if favourite[indexPath.section] {
             cell.favouriteButton.setImage(#imageLiteral(resourceName: "filledStar"), for: .normal)
         } else {
@@ -101,3 +98,9 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
     }
 }
 
+extension EmployeeListViewController: TableViewCellFavouriteButtonClicked {
+    func onclick(tag: Int, favourite: Bool) {
+        self.favourite[tag] = !favourite
+        self.employeeTableView.reloadData()
+    }
+}

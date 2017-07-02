@@ -8,8 +8,14 @@
 
 import UIKit
 
-class EmployeeTableViewCell: UITableViewCell {
+protocol TableViewCellFavouriteButtonClicked {
+    func onclick(tag: Int, favourite: Bool)
+}
 
+class EmployeeTableViewCell: UITableViewCell {
+    
+    var favouriteClicked: TableViewCellFavouriteButtonClicked?
+    
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var subtitleLbl: UILabel!
@@ -20,6 +26,11 @@ class EmployeeTableViewCell: UITableViewCell {
     }
 
     @IBAction func favouriteClicked(_ sender: UIButton) {
+        if sender.imageView?.image == #imageLiteral(resourceName: "filledStar") {
+            favouriteClicked?.onclick(tag: sender.tag, favourite: true)
+        } else {
+            favouriteClicked?.onclick(tag: sender.tag, favourite: false)
+        }
         
     }
 }

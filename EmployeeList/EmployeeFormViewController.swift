@@ -34,10 +34,10 @@ class EmployeeFormViewController: UIViewController {
                 if nameTextField.text != "" && molbileTextFiled.text != "" {
                     let e1 = Employee(name: nameTextField.text! , mobileNo: molbileTextFiled.text!)
                     //plistAccessMethods.writeDataOnPlist(newEmployee: e1)
-                    plistAccessMethods.readDataFromPlist(completion: { (oldEmpoyees:[String : String]) in
+                    plistAccessMethods.readDataFromPlist(completion: { (oldEmpoyees:[String : String], favourite:[String: Bool]) in
                         var employees = oldEmpoyees
                         employees.removeValue(forKey: self.selectedName)
-                        plistAccessMethods.writeDataOnPlist(oldEmplyee: employees, newEmployee: e1, completion: {
+                        plistAccessMethods.writeDataOnPlist(oldEmplyee: employees, newEmployee: e1, oldFavourite: favourite, completion: {
                             self.navigationController?.popViewController(animated: true)
                         })
                     })
@@ -46,8 +46,8 @@ class EmployeeFormViewController: UIViewController {
                 if nameTextField.text != "" && molbileTextFiled.text != "" {
                     let e1 = Employee(name: nameTextField.text! , mobileNo: molbileTextFiled.text!)
                     //plistAccessMethods.writeDataOnPlist(newEmployee: e1)
-                    plistAccessMethods.readDataFromPlist(completion: { (oldEmpoyees:[String : String]) in
-                        plistAccessMethods.writeDataOnPlist(oldEmplyee: oldEmpoyees, newEmployee: e1, completion: {
+                    plistAccessMethods.readDataFromPlist(completion: { (oldEmpoyees:[String : String], favourite: [String:Bool]) in
+                        plistAccessMethods.writeDataOnPlist(oldEmplyee: oldEmpoyees, newEmployee: e1, oldFavourite: favourite, completion: {
                             self.navigationController?.popViewController(animated: true)
                         })
                     })

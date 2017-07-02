@@ -15,7 +15,8 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
     
     let plistAccessMethods = PlistAccessMetods()
     var dataForTableView: [String:String] = [:]
-    var favourite = [Bool]()
+    var favourite :[String:Bool] = [:]
+    var isFirstRun = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,9 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         let plistExist = self.plistAccessMethods.checkPlistExist()
         print(plistExist)
         if plistExist{
-            self.plistAccessMethods.readDataFromPlist { (allEmployees:[String:String]) in
+            self.plistAccessMethods.readDataFromPlist { (allEmployees:[String:String], favourite:[String:Bool]) in
                 self.dataForTableView = allEmployees
-                for _ in 1...allEmployees.count {
-                    favourite.append(false)
-                }
+                self.favourite = favourite
                 DispatchQueue.main.async {
                     self.employeeTableView.reloadData()
                 }
@@ -75,7 +74,7 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
         cell.subtitleLbl.text = Array(dataForTableView.values)[indexPath.section]
         cell.favouriteClicked = self as TableViewCellFavouriteButtonClicked
         cell.favouriteButton.tag = indexPath.section
-        if favourite[indexPath.section] {
+        if Array(favourite.values)[indexPath.section] {
             cell.favouriteButton.setImage(#imageLiteral(resourceName: "filledStar"), for: .normal)
         } else {
             cell.favouriteButton.setImage(#imageLiteral(resourceName: "emptyStar"), for: .normal)
@@ -100,7 +99,15 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
 
 extension EmployeeListViewController: TableViewCellFavouriteButtonClicked {
     func onclick(tag: Int, favourite: Bool) {
-        self.favourite[tag] = !favourite
-        self.employeeTableView.reloadData()
+        let indexPath = IndexPath(row: 0, section: tag)
+        let cell = self.employeeTableView.cellForRow(at: indexPath) as! EmployeeTableViewCell
+        self.plistAccessMethods.writeDataOnFavouritePlist(oldFavourite: self.favourite, newfavourite: !favourite, forKey: cell.titleLbl.text!, completion: {
+            self.plistAccessMethods.readDataFromPlist(completion: { (_:[String : String], favourite:[String : Bool]) in
+                self.favourite = favourite
+                DispatchQueue.main.async {
+                   self.employeeTableView.reloadData()
+                }
+            })
+        })
     }
 }

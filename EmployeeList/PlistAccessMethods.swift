@@ -25,7 +25,21 @@ class PlistAccessMetods {
         return fileExist
     }
     
-    func createPlist(newEmployee: Employee, completion: ()->()) {
+    func checkFavouritePlistExist() -> Bool {
+        var fileExist = false
+        let path = documentDirectory + "/favourite.plist"
+        if(!fileManager.fileExists(atPath: path)){
+            fileExist = false
+        }else{
+            print("file exists")
+            fileExist = true
+        }
+        return fileExist
+    }
+    
+    
+    
+    func createPlist(newEmployee: Employee , completion: ()->()) {
         let path = documentDirectory + "/employee.plist"
         let name = newEmployee.name
         let phoneNo = newEmployee.mobileNo
@@ -35,31 +49,59 @@ class PlistAccessMetods {
         
         let someData = NSDictionary(dictionary: data)
         let isWritten = someData.write(toFile: path, atomically: true)
-        if isWritten {
+        
+        let pathofFavourite = documentDirectory + "/favourite.plist"
+        let favourite = false
+        let favouriteData : [String:Bool] = [
+            name : favourite
+        ]
+        
+        let someFavouriteData = NSDictionary(dictionary: favouriteData)
+        let isFavouriteWritten = someFavouriteData.write(toFile: pathofFavourite, atomically: true)
+        
+        if isWritten && isFavouriteWritten {
             completion()
         }
         print("is the file created: \(isWritten)")
     }
     
-    func readDataFromPlist(completion: ([String:String])->()) {
+    func readDataFromPlist(completion: ([String:String], [String:Bool])->()) {
         let path = documentDirectory + "/employee.plist"
-        
+        let pathofFavourite = documentDirectory + "/favourite.plist"
         let getEmployee = NSDictionary(contentsOfFile: path) as! [String : String]
-        completion(getEmployee)
+        let getFavourite = NSDictionary(contentsOfFile: pathofFavourite) as! [String : Bool]
+        completion(getEmployee, getFavourite)
         
     }
     
-    func writeDataOnPlist(oldEmplyee:[String:String], newEmployee: Employee, completion: ()->()) {
+    func writeDataOnPlist(oldEmplyee:[String:String], newEmployee: Employee, oldFavourite:[String: Bool], completion: ()->()) {
         let path = documentDirectory + "/employee.plist"
-        let name = newEmployee.name
-        let phoneNo = newEmployee.mobileNo
         var employees = oldEmplyee
-        employees[name] = phoneNo
+        employees[newEmployee.name] = newEmployee.mobileNo
         
         let someData = NSDictionary(dictionary: employees)
         let isWritten = someData.write(toFile: path, atomically: true)
         print("is the file created: \(isWritten)")
-        if isWritten {
+        
+        let pathofFavourite = documentDirectory + "/favourite.plist"
+        var favourite = oldFavourite
+        favourite[newEmployee.name] = false
+        
+        let someFavouriteData = NSDictionary(dictionary: favourite)
+        let isFavouriteWritten = someFavouriteData.write(toFile: pathofFavourite, atomically: true)
+        if isWritten && isFavouriteWritten {
+            completion()
+        }
+    }
+    
+    func writeDataOnFavouritePlist(oldFavourite:[String: Bool], newfavourite: Bool, forKey: String, completion: ()->()) {
+        let pathofFavourite = documentDirectory + "/favourite.plist"
+        var favourite = oldFavourite
+        favourite[forKey] = newfavourite
+        
+        let someFavouriteData = NSDictionary(dictionary: favourite)
+        let isFavouriteWritten = someFavouriteData.write(toFile: pathofFavourite, atomically: true)
+        if isFavouriteWritten {
             completion()
         }
     }

@@ -15,27 +15,26 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
     
     let plistAccessMethods = PlistAccessMetods()
     var dataForTableView: [String:String] = [:]
+    var favourite = [Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem?.customView?.backgroundColor = UIColor.orange
         
         var titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         segmentControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
         titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
         segmentControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
         self.automaticallyAdjustsScrollViewInsets = false
-        //      let person1 = Person(name: "Rajat", mobileNo: "8505802601", isFavourite: false)
-        //let plistExist = self.plistAccessMethods.checkPlistExist()
-        //print(plistExist)
-        //if plistExist{
-        // self.plistAccessMethods.readDataFromPlist { (allEmployees:[String:String]) in
-        //  self.dataForTableView = allEmployees
-        //  DispatchQueue.main.async {
-        //     self.employeeTableView.reloadData()
-        // }
-        //}
-        //}
+        let plistExist = self.plistAccessMethods.checkPlistExist()
+        if plistExist{
+            self.plistAccessMethods.readDataFromPlist { (allEmployees:[String:String]) in
+                for _ in 1...allEmployees.count {
+                    favourite.append(false)
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +59,7 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 55
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -74,14 +73,17 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.contentView.layer.shadowColor = UIColor.black.cgColor
-        //        cell?.contentView.layer.shadowOpacity = 1
-        //        cell?.contentView.layer.shadowOffset = CGSize.zero
-        cell?.contentView.layer.shadowRadius = 10
-        cell?.textLabel?.text = Array(dataForTableView.keys)[indexPath.section]
-        cell?.detailTextLabel?.text = Array(dataForTableView.values)[indexPath.section]
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! EmployeeTableViewCell
+        cell.contentView.layer.shadowColor = UIColor.black.cgColor
+        cell.contentView.layer.shadowRadius = 10
+        cell.titleLbl.text = Array(dataForTableView.keys)[indexPath.section]
+        cell.subtitleLbl.text = Array(dataForTableView.values)[indexPath.section]
+        if favourite[indexPath.section] {
+            cell.favouriteButton.setImage(#imageLiteral(resourceName: "filledStar"), for: .normal)
+        } else {
+            cell.favouriteButton.setImage(#imageLiteral(resourceName: "emptyStar"), for: .normal)
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

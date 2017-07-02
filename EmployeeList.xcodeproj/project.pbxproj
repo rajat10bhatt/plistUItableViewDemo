@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04620EE61F08B36F009AD925 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04620EE51F08B36F009AD925 /* Employee.swift */; };
 		04620EE81F08B3D0009AD925 /* PlistAccessMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04620EE71F08B3D0009AD925 /* PlistAccessMethods.swift */; };
+		04620EEC1F08FCEA009AD925 /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04620EEB1F08FCEA009AD925 /* EmployeeTableViewCell.swift */; };
 		04BB1ED31F07BB5200ACA094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1ED21F07BB5200ACA094 /* AppDelegate.swift */; };
 		04BB1ED51F07BB5200ACA094 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB1ED41F07BB5200ACA094 /* EmployeeListViewController.swift */; };
 		04BB1ED81F07BB5200ACA094 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BB1ED61F07BB5200ACA094 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		04620EE51F08B36F009AD925 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		04620EE71F08B3D0009AD925 /* PlistAccessMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistAccessMethods.swift; sourceTree = "<group>"; };
+		04620EEB1F08FCEA009AD925 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		04BB1ECF1F07BB5100ACA094 /* EmployeeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BB1ED21F07BB5200ACA094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04BB1ED41F07BB5200ACA094 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
@@ -106,8 +108,9 @@
 				04BB1ED21F07BB5200ACA094 /* AppDelegate.swift */,
 				04BB1ED41F07BB5200ACA094 /* EmployeeListViewController.swift */,
 				04BB1F001F07C9DD00ACA094 /* EmployeeFormViewController.swift */,
-				04620EE51F08B36F009AD925 /* Employee.swift */,
+				04620EEB1F08FCEA009AD925 /* EmployeeTableViewCell.swift */,
 				04620EE71F08B3D0009AD925 /* PlistAccessMethods.swift */,
+				04620EE51F08B36F009AD925 /* Employee.swift */,
 				04BB1ED61F07BB5200ACA094 /* Main.storyboard */,
 				04BB1ED91F07BB5200ACA094 /* Assets.xcassets */,
 				04BB1EDB1F07BB5200ACA094 /* LaunchScreen.storyboard */,
@@ -273,6 +276,7 @@
 				04620EE81F08B3D0009AD925 /* PlistAccessMethods.swift in Sources */,
 				04BB1ED31F07BB5200ACA094 /* AppDelegate.swift in Sources */,
 				04BB1F011F07C9DD00ACA094 /* EmployeeFormViewController.swift in Sources */,
+				04620EEC1F08FCEA009AD925 /* EmployeeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

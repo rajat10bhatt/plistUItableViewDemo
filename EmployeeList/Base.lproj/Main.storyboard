@@ -41,7 +41,7 @@
                                         <rect key="frame" x="8" y="38" width="367" height="565"/>
                                         <color key="backgroundColor" red="0.37254901960784315" green="0.49019607843137253" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="55" id="6H0-mM-die" customClass="EmployeeTableViewCell" customModule="EmployeeList" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" editingAccessoryType="detailDisclosureButton" rowHeight="55" id="6H0-mM-die" customClass="EmployeeTableViewCell" customModule="EmployeeList" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="367" height="55"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6H0-mM-die" id="tbt-81-TEv">
@@ -152,6 +152,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Fx-fs-wLa">
                                                 <rect key="frame" x="8" y="15" width="343" height="40"/>
                                                 <color key="backgroundColor" red="0.37254901960784315" green="0.49019607843137253" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="PiM-CF-DCy"/>
                                                 </constraints>
@@ -167,6 +168,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SkC-ME-M0U">
                                                 <rect key="frame" x="8" y="71" width="343" height="40"/>
                                                 <color key="backgroundColor" red="0.37254901960784315" green="0.49019607843137253" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="7tb-Ws-vkG"/>
                                                 </constraints>

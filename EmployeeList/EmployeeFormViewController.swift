@@ -43,7 +43,15 @@ class EmployeeFormViewController: UIViewController {
                             var employees = oldEmpoyees
                             employees.removeValue(forKey: self.selectedName)
                             plistAccessMethods.writeDataOnPlist(oldEmplyee: employees, newEmployee: e1, oldFavourite: favourite, completion: {
-                                self.navigationController?.popViewController(animated: true)
+                                var favouritenew = favourite
+                                if favourite[self.selectedName]! {
+                                    favouritenew.removeValue(forKey: self.selectedName)
+                                    plistAccessMethods.writeDataOnFavouritePlist(oldFavourite: favouritenew, newfavourite: true, forKey: e1.name, completion: {
+                                        self.navigationController?.popViewController(animated: true)
+                                    })
+                                } else {
+                                    self.navigationController?.popViewController(animated: true)
+                                }
                             })
                         })
                     }

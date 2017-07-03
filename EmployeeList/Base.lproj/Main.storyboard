@@ -115,7 +115,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Employee List" id="cuj-Np-e4k">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pgj-PH-Uqc">
+                        <barButtonItem key="rightBarButtonItem" image="plusIcon" id="pgj-PH-Uqc">
                             <connections>
                                 <segue destination="QD7-1q-DUu" kind="show" identifier="addNewEmployee" id="gPb-jJ-AaD"/>
                             </connections>
@@ -253,6 +253,9 @@
             <point key="canvasLocation" x="289" y="124"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plusIcon" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pyA-yh-Esy"/>
     </inferredMetricsTieBreakers>

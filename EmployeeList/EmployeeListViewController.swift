@@ -117,10 +117,11 @@ extension EmployeeListViewController: UITableViewDelegate, UITableViewDataSource
             cell.favouriteButton.tag = indexPath.section
             cell.favouriteButton.setImage(#imageLiteral(resourceName: "filledStar"), for: .normal)
         } else {
+            let name = Array(dataForTableView.keys)[indexPath.section]
             cell.titleLbl.text = Array(dataForTableView.keys)[indexPath.section]
             cell.subtitleLbl.text = Array(dataForTableView.values)[indexPath.section]
             cell.favouriteButton.tag = indexPath.section
-            if Array(favourite.values)[indexPath.section] {
+            if favourite[name]! {
                 cell.favouriteButton.setImage(#imageLiteral(resourceName: "filledStar"), for: .normal)
             } else {
                 cell.favouriteButton.setImage(#imageLiteral(resourceName: "emptyStar"), for: .normal)
